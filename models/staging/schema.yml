@@ -1,0 +1,73 @@
+models:
+  - name: base_movie_db_popular_movies
+    description: This table has all the movie data fetched from themoviedb.
+    
+    columns:
+      - name: movie_id
+        description: This is a unique identifier for the movie.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: genre_id
+        description: These are the unique ids of genre that the movie fall underscores.
+        data_tests:
+          - not_null
+
+      - name: movie_title
+        description: Original title of the movie.
+        data_tests:
+          - not_null
+          - unique
+      
+      - name: english_title
+        description: This is the title of the movie translated in English.
+        data_tests:
+          - not_null
+      
+      - name: movie_language
+        description: This field represents the original Language in which the movie was released.
+        data_tests: 
+          - not_null
+      
+      - name: movie_description
+        description: A short overview about the movie.
+        data_tests:
+          - not_null
+
+      - name: popularity
+        description: This field shows the popularity of each movie.
+        data_tests:
+          - not_null
+      
+      - name: vote_average
+        description: Average vote for the movie.
+        data_tests:
+          - not_null
+      
+      - name: is_adult
+        description: This field shows if the movie contains adult content or not.
+
+      - name: is_video
+        description: This field shows 
+
+      - name: vote_count
+        description: This is the total count of the vote for the movie.
+        data_tests:
+          - not_null
+
+      - name: release_date
+        description: This defines when the movie was released.
+        data_tests:
+          - not_null
+
+      - name: record_loaded_at
+        description: Defines the timestamp when the data was loaded.
+        data_tests:
+          - not_null
+
+      - name: backdrop_path,
+        description: Metadata
+
+      - name:  poster_path
+        description: Metadata

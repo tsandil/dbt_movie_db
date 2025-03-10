@@ -1,0 +1,24 @@
+sources:
+  - name: popular_movie_db
+    database: raw_movie_data
+    schema: themoviedb
+    tables:
+      - name: popular_movies
+  
+  - name: now_playing_movie_db
+    database: raw_movie_data
+    schema: themoviedb
+    tables:
+      - name: now_playing_movies
+  
+  - name: top_rated_movie_db
+    database: raw_movie_data
+    schema: themoviedb
+    tables:
+      - name: top_rated_movies
+  
+  - name: upcoming_movie_db
+    database: raw_movie_data
+    schema: themoviedb
+    tables:
+      - name: upcoming_movies
