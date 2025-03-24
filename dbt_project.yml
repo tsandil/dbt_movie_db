@@ -42,5 +42,3 @@ models:
     staging:
       +materialized: view
       +schema: staging_moviedb
-
-

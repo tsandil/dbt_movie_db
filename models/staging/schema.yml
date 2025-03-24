@@ -1,73 +1,187 @@
 models:
+
+# For all base models
   - name: base_movie_db_popular_movies
-    description: This table has all the movie data fetched from themoviedb.
+    description: This table has all the popular movie data fetched from themoviedb.
     
-    columns:
+    columns: &shared_base_columns
       - name: movie_id
-        description: This is a unique identifier for the movie.
+        description: "{{ doc('movie_id') }}"
         data_tests:
           - not_null
           - unique
 
       - name: genre_id
-        description: These are the unique ids of genre that the movie fall underscores.
+        description: "{{ doc('genre_id') }}"
         data_tests:
           - not_null
 
       - name: movie_title
-        description: Original title of the movie.
+        description: "{{ doc('movie_title') }}"
         data_tests:
           - not_null
           - unique
       
       - name: english_title
-        description: This is the title of the movie translated in English.
+        description: "{{ doc('english_title') }}"
         data_tests:
           - not_null
       
       - name: movie_language
-        description: This field represents the original Language in which the movie was released.
+        description: "{{ doc('movie_language') }}"
         data_tests: 
           - not_null
       
       - name: movie_description
-        description: A short overview about the movie.
+        description: "{{ doc('movie_description') }}"
         data_tests:
           - not_null
 
       - name: popularity
-        description: This field shows the popularity of each movie.
+        description: "{{ doc('popularity') }}"
         data_tests:
           - not_null
       
       - name: vote_average
-        description: Average vote for the movie.
+        description: "{{ doc('vote_average') }}"
         data_tests:
           - not_null
       
       - name: is_adult
-        description: This field shows if the movie contains adult content or not.
+        description: "{{ doc('is_adult') }}"
 
       - name: is_video
-        description: This field shows 
+        description: "{{ doc('is_video') }}"
 
       - name: vote_count
-        description: This is the total count of the vote for the movie.
+        description: "{{ doc('vote_count') }}"
         data_tests:
           - not_null
 
       - name: release_date
-        description: This defines when the movie was released.
+        description: "{{ doc('release_date') }}"
         data_tests:
           - not_null
 
       - name: record_loaded_at
-        description: Defines the timestamp when the data was loaded.
+        description: "{{ doc('record_loaded_at') }}"
         data_tests:
           - not_null
 
-      - name: backdrop_path,
-        description: Metadata
+      - name: source_system
+        description: "{{ doc('source_system') }}"
+
+      - name: backdrop_path
+        description: "{{ doc('backdrop_path') }}"
 
       - name:  poster_path
-        description: Metadata
+        description: "{{ doc('poster_path') }}"
+
+  - name: base_movie_db_top_rated_movies
+    description: This table contains the top-rated movies fetched from themoviedb.
+    columns: *shared_base_columns
+
+  - name: base_movie_db_upcoming_movies
+    description: This table contains upcoming movies fetched from themoviedb.
+    columns: *shared_base_columns
+
+  - name: base_movie_db_now_playing_movies
+    description: This table contains currently playing movies fetched from themoviedb.
+    columns: *shared_base_columns
+
+# For all staging models
+  - name: stg_movie_db_popular_movies
+    description: This view is the staging model for popular movies with cleaned and transformed data
+    
+    columns: &shared_stg_columns
+      - name: movie_key
+        description: "{{ doc('movie_key') }}"
+
+      - name: movie_id
+        description: "{{ doc('movie_id') }}"
+
+      - name: genre_id
+        description: "{{ doc('genre_id') }}"
+
+      - name: movie_title
+        description: "{{ doc('movie_title') }}"
+
+      - name: english_title
+        description: "{{ doc('english_title') }}"
+
+      - name: movie_language
+        description: "{{ doc('movie_language') }}"
+
+      - name: movie_description
+        description: "{{ doc('movie_description') }}"
+
+      - name: popularity
+        description: "{{ doc('popularity') }}"
+
+      - name: vote_average
+        description: "{{ doc('vote_average') }}"
+
+      - name: is_adult
+        description: "{{ doc('is_adult') }}"
+
+      - name: is_video
+        description: "{{ doc('is_video') }}"
+
+      - name: release_date
+        description: "{{ doc('release_date') }}"
+
+      - name: source_system
+        description: "{{ doc('source_system') }}"
+
+  - name: stg_movie_db_top_rated_movies
+    description: This view is the staging model for popular movies with cleaned and transformed data
+    columns: *shared_stg_columns
+
+  - name: stg_movie_db_upcoming_movies
+    description: This view is the staging model for popular movies with cleaned and transformed data
+    columns: *shared_stg_columns
+
+  - name: stg_movie_db_now_playing_movies
+    description: This view is the staging model for popular movies with cleaned and transformed data
+    columns: *shared_stg_columns
+
+  - name: stg_dim_movies
+    description: This model merges movie data from multiple sources, aggregates key attributes, and tracks source systems for unified dataset.
+
+    columns:
+
+      - name: movie_key
+        description: "{{ doc('movie_key') }}"
+
+      - name: movie_id
+        description: "{{ doc('movie_id') }}"
+
+      - name: genre_id
+        description: A JSON object storing genre ids of movies from different sources.
+
+      - name: movie_title
+        description: "{{ doc('movie_title') }}"
+
+      - name: english_title
+        description: "{{ doc('english_title') }}"
+
+      - name: movie_description
+        description: "{{ doc('movie_description') }}"
+
+      - name: popularity_by_source
+        description: A JSON object storing popularity scores from different sources.
+
+      - name: vote_average_by_source
+        description: A JSON object storing vote averages from different sources.
+
+      - name: is_adult
+        description: "{{ doc('is_adult') }}"
+
+      - name: is_video
+        description: "{{ doc('is_video') }}"
+
+      - name: release_date
+        description: "{{ doc('release_date') }}"
+
+      - name: source_system
+        description: A list of sources where the movie data was found.

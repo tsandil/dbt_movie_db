@@ -2,7 +2,7 @@ with source as (
 
     select
         *
-    from {{ source('now_playing_movie_db','now_playing_movies') }}
+    from {{ source('the_movie_db','now_playing_movies') }}
 
 ),
 
