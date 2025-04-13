@@ -70,17 +70,3 @@ Metadata
 {% docs movie_key %}
 This is the unique key of movies generated using the movie_id
 {% enddocs %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-

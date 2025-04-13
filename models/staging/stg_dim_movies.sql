@@ -99,15 +99,15 @@ pre_aggregated as (
         movie_title,
         english_title,
         movie_language,
-        max(movie_description) as movie_description,
-        max(popularity) as popularity,
-        max(vote_average) as vote_average,
         is_adult,
         is_video,
         release_date,
-        source_system
+        source_system,
+        max(movie_description) as movie_description,
+        max(popularity) as popularity,
+        max(vote_average) as vote_average
     from combined_sources
-    group by 1,2,3,4,5,6,10,11,12,13
+    group by 1,2,3,4,5,6,7,8,9,10
 
 ),
 
@@ -116,18 +116,18 @@ json_aggregated as (
     select
         movie_key,
         movie_id,
-        jsonb_object_agg(source_system, genre_id) as genre_id,
         movie_title,
         english_title,
         movie_language,
         movie_description,
-        jsonb_object_agg(source_system, popularity) as popularity_by_source,
-        jsonb_object_agg(source_system, vote_average) as vote_average_by_source,
         is_adult,
         is_video,
-        release_date
+        release_date,
+        jsonb_object_agg(source_system, genre_id) as genre_id,
+        jsonb_object_agg(source_system, popularity) as popularity_by_source,
+        jsonb_object_agg(source_system, vote_average) as vote_average_by_source
     from pre_aggregated
-    group by 1,2,4,5,6,7,10,11,12
+    group by 1,2,3,4,5,6,7,8,9
 
 ),
 
