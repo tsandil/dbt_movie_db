@@ -1,24 +1,157 @@
 sources:
-  - name: popular_movie_db
+  - name: the_movie_db
+    description: This source contains movie-related datasets extracted from The Movie Database (TMDB) API.
     database: raw_movie_data
     schema: themoviedb
     tables:
       - name: popular_movies
-  
-  - name: now_playing_movie_db
-    database: raw_movie_data
-    schema: themoviedb
-    tables:
+        description: This source contains a list of movies extracted from the endpoint popular movies.
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: "record_loaded_at"
+        columns:
+          - name: id
+            description: The unique id of the movies fetched.
+          - name: title
+            description: The English title of the movies.
+          - name: original_title
+            description: The title of movies in Original language.
+          - name: genre_ids
+            description: These are the unique ids of genre that the movies fall under.
+          - name: popularity
+            description: This field shows the popularity of each movie.
+          - name: vote_average
+            description: Average vote for the movie.
+          - name: vote_count
+            description: This is the total count of the vote for the movie.
+          - name: release_date
+            description: This defines when the movie was released.
+          - name: record_loaded_at
+            description: Defines the timestamp when the data was loaded.
+          - name: original_language
+            description: This field represents the original Language in which the movie was released.
+          - name: overview
+            description: A short overview about the movie.
+          - name: adult
+            description: This field shows if the movie contains adult content or not.
+          - name: video
+            description: This field shows whether the movie has a video associated or not.
+          - name: backdrop_path
+            description: Metadata
+          - name: poster_path
+            description: Metadata
+
       - name: now_playing_movies
-  
-  - name: top_rated_movie_db
-    database: raw_movie_data
-    schema: themoviedb
-    tables:
+        description: This source contains a list of movies extracted from the endpoint now playing movies.
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: "record_loaded_at"
+        columns:
+          - name: id
+            description: The unique id of the movies fetched.
+          - name: title
+            description: The English title of the movies.
+          - name: original_title
+            description: The title of movies in Original language.
+          - name: genre_ids
+            description: These are the unique ids of genre that the movies fall under.
+          - name: popularity
+            description: This field shows the popularity of each movie.
+          - name: vote_average
+            description: Average vote for the movie.
+          - name: vote_count
+            description: This is the total count of the vote for the movie.
+          - name: release_date
+            description: This defines when the movie was released.
+          - name: record_loaded_at
+            description: Defines the timestamp when the data was loaded.
+          - name: original_language
+            description: This field represents the original Language in which the movie was released.
+          - name: overview
+            description: A short overview about the movie.
+          - name: adult
+            description: This field shows if the movie contains adult content or not.
+          - name: video
+            description: This field shows whether the movie has a video associated or not.
+          - name: backdrop_path
+            description: Metadata
+          - name: poster_path
+            description: Metadata
+        
       - name: top_rated_movies
-  
-  - name: upcoming_movie_db
-    database: raw_movie_data
-    schema: themoviedb
-    tables:
+        description: This source contains a list of movies extracted from the endpoint top rated movies.
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: "record_loaded_at"
+        columns:
+          - name: id
+            description: The unique id of the movies fetched.
+          - name: title
+            description: The English title of the movies.
+          - name: original_title
+            description: The title of movies in Original language.
+          - name: genre_ids
+            description: These are the unique ids of genre that the movies fall under.
+          - name: popularity
+            description: This field shows the popularity of each movie.
+          - name: vote_average
+            description: Average vote for the movie.
+          - name: vote_count
+            description: This is the total count of the vote for the movie.
+          - name: release_date
+            description: This defines when the movie was released.
+          - name: record_loaded_at
+            description: Defines the timestamp when the data was loaded.
+          - name: original_language
+            description: This field represents the original Language in which the movie was released.
+          - name: overview
+            description: A short overview about the movie.
+          - name: adult
+            description: This field shows if the movie contains adult content or not.
+          - name: video
+            description: This field shows whether the movie has a video associated or not.
+          - name: backdrop_path
+            description: Metadata
+          - name: poster_path
+            description: Metadata
+
       - name: upcoming_movies
+        description: This source contains a list of movies extracted from the endpoint upcoming movies.
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: "record_loaded_at"
+        columns:
+          - name: id
+            description: The unique id of the movies fetched.
+          - name: title
+            description: The English title of the movies.
+          - name: original_title
+            description: The title of movies in Original language.
+          - name: genre_ids
+            description: These are the unique ids of genre that the movies fall under.
+          - name: popularity
+            description: This field shows the popularity of each movie.
+          - name: vote_average
+            description: Average vote for the movie.
+          - name: vote_count
+            description: This is the total count of the vote for the movie.
+          - name: release_date
+            description: This defines when the movie was released.
+          - name: record_loaded_at
+            description: Defines the timestamp when the data was loaded.
+          - name: original_language
+            description: This field represents the original Language in which the movie was released.
+          - name: overview
+            description: A short overview about the movie.
+          - name: adult
+            description: This field shows if the movie contains adult content or not.
+          - name: video
+            description: This field shows whether the movie has a video associated or not.
+          - name: backdrop_path
+            description: Metadata
+          - name: poster_path
+            description: Metadata

@@ -2,7 +2,7 @@
 
     select 
         *
-    from {{ source('popular_movie_db', 'popular_movies') }}
+    from {{ source('the_movie_db', 'popular_movies') }}
 
 ),
 

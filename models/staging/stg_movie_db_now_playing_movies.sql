@@ -41,7 +41,7 @@ seed as (
 
     select
         {{ dbt_utils.generate_surrogate_key(['null']) }} as movie_key,
-        00000 as movie_id,
+        000000 as movie_id,
         'Unknown' as genre_id,
         'Unknown' as movie_title,
         'Unknown' as english_title,
